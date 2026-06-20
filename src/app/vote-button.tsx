@@ -22,10 +22,8 @@ export default function VoteButton() {
   async function handleVote() {
     setStatus({ state: "loading" });
     try {
-      for (let j=0;j<57;j++){
       const data = await submitVote(DEFAULT_VOTE);
-      
-      setStatus({ state: "success", message: JSON.stringify(data) });}
+      setStatus({ state: "success", message: JSON.stringify(data) });
     } catch (err) {
       const message = err instanceof Error ? err.message : "Vote failed";
       setStatus({ state: "error", message });
