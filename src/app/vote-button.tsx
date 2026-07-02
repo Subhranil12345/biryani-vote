@@ -18,18 +18,16 @@ type Status =
 
 export default function VoteButton() {
   const [status, setStatus] = useState<Status>({ state: "idle" });
-const delay = (ms:any) => new Promise(res => setTimeout(res, ms));
+const delay = (ms:number) => new Promise(res => setTimeout(res, ms));
 
 async function handleVote() {
     setStatus({ state: "loading" });
     try {
         for (let j = 0; j >=0; j++) {
-            // 2. Wait 2 seconds BEFORE making the API/submit call
             await delay(2000); 
             
-            // 3. This now waits properly and works sequentially
-            const data = await submitVote(DEFAULT_VOTE); 
-            console.log(`Loop ${j} finished:`, data);
+             await submitVote(DEFAULT_VOTE); 
+
         }
     } catch (error) {
         console.error(error);
